@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-04-2024 a las 21:58:24
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 18-04-2024 a las 21:31:46
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bolsa`
+-- Base de datos: `bolsas`
 --
 
 -- --------------------------------------------------------
@@ -86,11 +86,19 @@ CREATE TABLE `usuarios` (
   `direccion` varchar(255) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `usuario` varchar(50) NOT NULL,
-  `contraseña` varchar(255) NOT NULL,
+  `contrasenia` varchar(255) NOT NULL,
   `id_rol` int(11) NOT NULL,
   `ruta_foto` varchar(255) DEFAULT NULL,
   `ruta_cv` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombres`, `apellidos`, `dni`, `direccion`, `telefono`, `usuario`, `contrasenia`, `id_rol`, `ruta_foto`, `ruta_cv`) VALUES
+(1, 'daniel', 'aro', '1234567', 'asdasd', '987654321', 'admin', '123456', 1, NULL, NULL),
+(2, 'asdasd', 'asdasd', '123', '', '123123', '', '', 3, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -151,36 +159,7 @@ ALTER TABLE `postulaciones`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `empresas`
---
-ALTER TABLE `empresas`
-  ADD CONSTRAINT `empresas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
-
---
--- Filtros para la tabla `oferta_laboral`
---
-ALTER TABLE `oferta_laboral`
-  ADD CONSTRAINT `oferta_laboral_ibfk_1` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id`);
-
---
--- Filtros para la tabla `postulaciones`
---
-ALTER TABLE `postulaciones`
-  ADD CONSTRAINT `postulaciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
-  ADD CONSTRAINT `postulaciones_ibfk_2` FOREIGN KEY (`id_oferta`) REFERENCES `oferta_laboral` (`id`);
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
